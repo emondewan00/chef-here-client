@@ -26,10 +26,12 @@ const AuthProvider = ({ children }) => {
   const GithubProvider = new GithubAuthProvider();
 
   const loginWithGoogle = () => {
+    setLoading(true)
     return signInWithPopup(auth, googleProvider);
   };
 
   const githubLogin = () => {
+    setLoading(true)
     return signInWithPopup(auth, GithubProvider);
   };
   const updateUser = (user, name, photo) => {
@@ -49,6 +51,7 @@ const AuthProvider = ({ children }) => {
     sendEmailVerification(user);
   };
   const emailAndPass = (email, password, userName, userPhoto) => {
+    setLoading(true)
     return createUserWithEmailAndPassword(auth, email, password)
       .then((res) => {
         updateUser(res.user, userName, userPhoto);
@@ -63,9 +66,11 @@ const AuthProvider = ({ children }) => {
     return sendPasswordResetEmail(auth, email);
   };
   const logInEmailAndPass = (email, password) => {
+    setLoading(true)
     signInWithEmailAndPassword(email, password);
   };
   const logOut = () => {
+    setLoading(true)
     return signOut(auth);
   };
   useEffect(() => {

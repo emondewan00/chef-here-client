@@ -10,6 +10,7 @@ const LogWithEmailAndPass = () => {
   const navigate = useNavigate();
 
   const whatWillBeGo = location?.state?.from?.pathname || "/";
+  console.log(whatWillBeGo)
 
   const googleLog = () => {
     loginWithGoogle();

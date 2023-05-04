@@ -7,6 +7,7 @@ import Register from "../components/Register";
 import ErrorPage from "../components/ErrorPage";
 import Recipes from "../components/Recipes";
 import ProviteRoute from "../components/proviteRoute/ProviteRoute";
+import Blogs from "../components/Blogs";
 
 const Routes = createBrowserRouter([
   {
@@ -35,6 +36,14 @@ const Routes = createBrowserRouter([
         element: (
           <ProviteRoute>
             <Recipes />
+          </ProviteRoute>
+        ),
+      },
+      {
+        path: "/blogs",
+        element: (
+          <ProviteRoute>
+            <Blogs />
           </ProviteRoute>
         ),
       },

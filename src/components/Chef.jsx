@@ -8,7 +8,6 @@ const Chef = () => {
       .then((res) => res.json())
       .then((value) => setData(value));
   }, []);
-  console.log(data);
   return (
     <div className="mt-10 px-3 md:px-0 mx-auto container">
       <h1 className="text-4xl  text-center font-semibold "> Get Best One</h1>
