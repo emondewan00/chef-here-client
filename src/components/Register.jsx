@@ -3,23 +3,24 @@ import { Link } from "react-router-dom";
 import { AuthContext } from "./AuthProvider/AuthProvider";
 
 const Register = () => {
-  const { emailAndPass } = useContext(AuthContext);
+  const { emailAndPass, registerErr } = useContext(AuthContext);
   const [userName, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confPass, setConfPass] = useState("");
   const [image, setImage] = useState("");
+  const [error, setError] = useState("");
   const submitHandler = (e) => {
     e.preventDefault();
-    console.log({
-      email,
-      userName,
-      password,
-      image,
-    });
+    if (password.match(confPass)) {
+      emailAndPass(email, password, userName, image);
+      setError("")
+    } else {
+      setError("Password is not match");
+    }
   };
   return (
-    <div className="md:w-1/3  px-4 mt-10 md:mt-32 md:px-0 mx-auto">
+    <div className="md:w-1/3  px-4 mt-10 md:my-16 md:px-0 mx-auto">
       <div className="card border  bg-gray-100 p-10">
         <h1 className="card-title pb-4 text-center mx-auto  font-bold">
           Register Now
@@ -41,15 +42,17 @@ const Register = () => {
             />
           </div>
           <div>
-            <label htmlFor="file" className="text-xl font-semibold">
-              Chose Image
+            <label htmlFor="img-url" className="text-xl font-semibold">
+              Image URL
             </label>
             <input
-              id="file"
-              type="file"
+              type="url"
+              name="img-url"
+              id="img-url"
               onChange={(e) => setImage(e.target.value)}
               required
-              className="file-input form-control  file-input-bordered file-input-primary  w-full my-3"
+              placeholder="Enter your image url"
+              className="form-control w-full outline-none p-3 text-lg ring ring-purple-500 my-3 ring-offset-1 rounded-sm shadow"
             />
           </div>
           <div>
@@ -106,6 +109,9 @@ const Register = () => {
             <Link to="/login" className="text-red-500">
               Login
             </Link>
+          </p>
+          <p className="text-red-600 mt-2 text-xl font-semibold">
+            {error ? error : registerErr}
           </p>
         </form>
       </div>

@@ -19,6 +19,7 @@ const auth = getAuth(app);
 // eslint-disable-next-line
 const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState("");
+  const [registerErr, setRegisterErr] = useState("");
 
   const googleProvider = new GoogleAuthProvider();
   const GithubProvider = new GithubAuthProvider();
@@ -30,10 +31,10 @@ const AuthProvider = ({ children }) => {
   const githubLogin = () => {
     return signInWithPopup(auth, GithubProvider);
   };
-  const updateUser = (user, name) => {
+  const updateUser = (user, name, photo) => {
     updateProfile(user, {
       displayName: name,
-      photoURL: "https://example.com/jane-q-user/profile.jpg",
+      photoURL: photo,
     })
       .then(() => {
         // Profile updated!
@@ -46,18 +47,20 @@ const AuthProvider = ({ children }) => {
   const emailVerification = (user) => {
     sendEmailVerification(user);
   };
-  const emailAndPass = (email, password, userName) => {
+  const emailAndPass = (email, password, userName, userPhoto) => {
     return createUserWithEmailAndPassword(auth, email, password)
       .then((res) => {
-        updateUser(res.user, userName);
+        updateUser(res.user, userName, userPhoto);
         emailVerification(res.user);
+        setRegisterErr("");//Account create success
       })
-      .catch((err) => console.log(err));
+      .catch((error) => {
+        setRegisterErr(error.message);
+      });
   };
-
-  const resetPass=(email)=>{
-    return sendPasswordResetEmail(auth,email)
-  }
+  const resetPass = (email) => {
+    return sendPasswordResetEmail(auth, email);
+  };
   const logInEmailAndPass = (email, password) => {
     signInWithEmailAndPassword(email, password);
   };
@@ -75,7 +78,6 @@ const AuthProvider = ({ children }) => {
       unsubscrib();
     };
   }, []);
-
   const authInfo = {
     loginWithGoogle,
     githubLogin,
@@ -83,7 +85,8 @@ const AuthProvider = ({ children }) => {
     logInEmailAndPass,
     currentUser,
     logOut,
-    resetPass
+    resetPass,
+    registerErr,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children} </AuthContext.Provider>
