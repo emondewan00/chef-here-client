@@ -17,11 +17,7 @@ const Routes = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: (
-          <ProviteRoute>
-            <Banner />
-          </ProviteRoute>
-        ),
+        element: <Banner />,
       },
       {
         path: "/login",
