@@ -33,7 +33,7 @@ const LogWithEmailAndPass = () => {
   };
 
   return (
-    <div className="md:w-1/4  px-4 mt-10 md:my-16 md:px-0 m-auto">
+    <div className="md:w-1/4  px-4 my-10 md:my-16 md:px-0 mx-auto">
       <div className="card border my-auto shadow-xl shadow-purple-200 bg-gray-100 p-10">
         <h1 className="card-title pb-4 text-center mx-auto  font-bold">
           Login your account

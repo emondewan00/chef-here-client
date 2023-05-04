@@ -44,7 +44,7 @@ const Footer = () => {
             ))}
           </ul>
         </div>
-        <div className="text-sm">
+        <div className="text-sm my-auto">
           <p className="text-2xl">Contact Us</p>
           <p>1234 Main Street</p>
           <p>Anytown, USA 12345</p>

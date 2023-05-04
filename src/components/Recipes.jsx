@@ -19,22 +19,22 @@ const Recipes = () => {
   } = loadedData || {};
   console.log(ingredients)
   useEffect(() => {
-    fetch(`http://localhost:5000/chefs/${id}`)
+    fetch(`https://dragon-news-server-miremon5222-gmailcom.vercel.app/chefs/${id}`)
       .then((res) => res.json())
       .then((data) => setLoadedData(data));
   }, []);
   return (
     <div className="container my-10 mx-auto">
-      <div className="grid md:grid-cols-3 grid-cols-1 bg-gray-100 rounded justify-around ">
-        <div className="my-auto px-4 space-y-2">
+      <div className="grid md:grid-cols-3 gap-y-8 grid-cols-1 bg-gray-100 rounded justify-around ">
+        <div className="md:my-auto px-4 space-y-2 mt-4 ">
           <p className="text-5xl">Name:{name}</p>
           <p className="text-2xl">Experience:{experience}</p>
           <p className="text-2xl">Number of recipes:{numRecipes}</p>
           <p className="text-2xl">Likes:{likes}</p>
           <p className="text-xl">Description:{description}</p>
         </div>
-        <div>
-          {/* <dvi className="border-r border-2 h-10 w-1 shadow-2xl shadow-pink-300  ">hallo</dvi> */}
+        <div >
+          {/* <dvi className="border-r border-2 h-screen shadow-2xl shadow-pink-300"></dvi> */}
         </div>
         <div>
           <img src={image} className="w-[500px]" alt="" />
@@ -42,9 +42,9 @@ const Recipes = () => {
       </div>
       <div className="my-12">
         <h1 className="text-center text-5xl">My Recipe</h1>
-        <div className="flex gap-x-4 justify-around ">
+        <div className="flex flex-col md:flex-row gap-x-4 px-4 md:px-0 justify-around items-center">
           {recipes?.map((r) => (
-            <div className="my-10  bg-gray-50 rounded px-8 py-4">
+            <div className="my-4 md:my-10  bg-gray-50 rounded px-4 py-4">
               <div className="">
                 <div>
                   <h1 className=" my-2 text-center text-3xl">{r}</h1>
