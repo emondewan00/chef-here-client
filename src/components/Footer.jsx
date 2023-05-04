@@ -20,8 +20,8 @@ const Footer = () => {
     },
   ];
   return (
-    <footer className="bg-gray-800 text-gray-400 py-8">
-      <div className="container mx-auto flex justify-between px-4">
+    <footer className=" bg-gray-800 text-gray-400 py-8">
+      <div className=" container mx-auto flex justify-between px-4">
         <div className="text-sm my-auto">
           <p>&copy; 2023 Chef Here</p>
           <p>All rights reserved.</p>

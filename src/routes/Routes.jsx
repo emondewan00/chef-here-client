@@ -5,16 +5,22 @@ import Banner from "../components/Banner";
 import LogWithEmailAndPass from "../components/LogWithEmailAndPass";
 import Register from "../components/Register";
 import ErrorPage from "../components/ErrorPage";
+import Recipes from "../components/Recipes";
+import ProviteRoute from "../components/proviteRoute/ProviteRoute";
 
 const Routes = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
-    errorElement:<ErrorPage/>,
+    errorElement: <ErrorPage />,
     children: [
       {
         path: "/",
-        element: <Banner />,
+        element: (
+          <ProviteRoute>
+            <Banner />
+          </ProviteRoute>
+        ),
       },
       {
         path: "/login",
@@ -23,6 +29,14 @@ const Routes = createBrowserRouter([
       {
         path: "/register",
         element: <Register />,
+      },
+      {
+        path: "/recipes/:id",
+        element: (
+          <ProviteRoute>
+            <Recipes />
+          </ProviteRoute>
+        ),
       },
     ],
   },

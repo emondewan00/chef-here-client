@@ -20,6 +20,7 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState("");
   const [registerErr, setRegisterErr] = useState("");
+  const [loading, setLoading] = useState(true);
 
   const googleProvider = new GoogleAuthProvider();
   const GithubProvider = new GithubAuthProvider();
@@ -52,7 +53,7 @@ const AuthProvider = ({ children }) => {
       .then((res) => {
         updateUser(res.user, userName, userPhoto);
         emailVerification(res.user);
-        setRegisterErr("");//Account create success
+        setRegisterErr(""); //Account create success
       })
       .catch((error) => {
         setRegisterErr(error.message);
@@ -71,7 +72,7 @@ const AuthProvider = ({ children }) => {
     const unsubscrib = onAuthStateChanged(auth, (user) => {
       if (user) {
         setCurrentUser(user);
-        // console.log(user);
+        setLoading(false);
       }
     });
     return () => {
@@ -87,6 +88,7 @@ const AuthProvider = ({ children }) => {
     logOut,
     resetPass,
     registerErr,
+    loading,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children} </AuthContext.Provider>

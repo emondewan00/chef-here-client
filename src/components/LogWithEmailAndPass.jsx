@@ -1,19 +1,23 @@
 import React, { useContext } from "react";
 import { FaGoogle } from "react-icons/fa";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider/AuthProvider";
 
 const LogWithEmailAndPass = () => {
   const { loginWithGoogle, logInEmailAndPass, githubLogin } =
     useContext(AuthContext);
   const location = useLocation();
-  console.log(location);
+  const navigate = useNavigate();
+
+  const whatWillBeGo = location?.state?.from?.pathname || "/";
 
   const googleLog = () => {
     loginWithGoogle();
+    navigate(whatWillBeGo);
   };
   const githubLog = () => {
     githubLogin();
+    navigate(whatWillBeGo);
   };
   const submitHandler = (event) => {
     event.preventDefault();
@@ -25,6 +29,7 @@ const LogWithEmailAndPass = () => {
     delete value[""];
     console.log(value);
     logInEmailAndPass(value.email, value.password);
+    navigate(whatWillBeGo);
   };
 
   return (
