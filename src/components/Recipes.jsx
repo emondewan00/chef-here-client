@@ -64,10 +64,10 @@ const Recipes = () => {
                   </ol>
                 </div>
                 <div className="card-actions justify-between pt-4 border-t items-center text-lg">
-                  <button className=" py-1 text-white  shadow-2xl rounded bg-primary flex items-center space-x-2  text-xl !px-7">
+                  <button className=" py-1 text-white  shadow-2xl rounded bg-primary flex items-center space-x-2  text-xl px-4">
                     <BsFillHandThumbsUpFill /> <span>{likes}</span>
                   </button>
-                  <button className="  text-white  shadow-2xl rounded bg-primary flex items-center space-x-2 py-1  text-xl !px-7">
+                  <button className="  text-white  shadow-2xl rounded bg-primary flex items-center py-1  text-xl px-4">
                     View Recipes
                   </button>
                 </div>

@@ -39,7 +39,10 @@ const NavBar = () => {
     <div className=" bg-white shadow">
       <nav className="p-5 container mx-auto  md:flex md:items-center md:justify-between">
         <div className="flex justify-between items-center ">
-          <Link to="/" className="text-2xl hover:text-4xl delay-200 transition-all duration-300 ease-in-out  cursor-pointer">
+          <Link
+            to="/"
+            className="text-2xl hover:text-4xl delay-200 transition-all duration-300 ease-in-out  cursor-pointer"
+          >
             Chef Here
           </Link>
 
@@ -78,7 +81,7 @@ const NavBar = () => {
                 to={r.path}
                 className={({ isActive }) =>
                   isActive
-                    ? "text-blue-600"
+                    ? "text-blue-600 text-xl"
                     : "text-xl hover:text-cyan-500 duration-500"
                 }
               >
@@ -86,7 +89,7 @@ const NavBar = () => {
               </NavLink>
             </li>
           ))}
-          {currentUser && log? (
+          {currentUser && log ? (
             <button
               onClick={singOut}
               className="bg-cyan-400 text-white font-[Poppins] duration-500 px-6 py-2 mx-4 hover:bg-cyan-500 rounded "

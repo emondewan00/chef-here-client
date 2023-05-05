@@ -27,9 +27,9 @@ const CustomerReview = () => {
   return (
     <div className="container mx-auto my-8 ">
       <h1 className="text-6xl text-center my-8 text-white">Customer Review</h1>
-      <div className="flex flex-col md:flex-row justify-center  items-center gap-x-8 ">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-x-8 ">
         {review.map((r) => (
-          <div key={r.id} className="w-[350px] card-hover my-4 md:my-0 bg-gray-200 rounded p-4">
+          <div key={r.id} className=" w-80 md:w-[350px]  card-hover my-4 md:my-0 bg-gray-200 rounded p-4">
             <img src={r.img} className="mx-auto rounded-full mb-7" height={"30px"} alt="" />
             <div className="text-center">
               <q>{r.review}</q>

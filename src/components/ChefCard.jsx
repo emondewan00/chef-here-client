@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 const ChefCard = ({ data }) => {
   const { id, image, name, likes, numRecipes, experience } = data || {};
   return (
-    <div className=" card-compact w-[360px] bg-gray-200 rounded card-hover">
+    <div className=" card-compact w-80 md:w-[360px]  bg-gray-200 rounded card-hover">
       <figure>
         <img
           src={image}
@@ -20,7 +20,7 @@ const ChefCard = ({ data }) => {
         </p>
 
         <div className="card-actions justify-between border-t border-gray-500 pt-2 items-center text-lg">
-          <button className="  flex items-center space-x-2  text-xl !px-7">
+          <button className="  flex text-blue-400 items-center space-x-2  text-xl !px-7">
             <BsFillHandThumbsUpFill /> <span>{likes}</span>
           </button>
           <Link

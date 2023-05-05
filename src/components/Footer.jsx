@@ -34,7 +34,7 @@ const Footer = () => {
                   to={r.path}
                   className={({ isActive }) =>
                     isActive
-                      ? "text-black"
+                      ? "text-yellow-400 text-xl"
                       : "text-xl hover:text-cyan-500 duration-500"
                   }
                 >
