@@ -29,12 +29,12 @@ const Services = () => {
       cardImg: "/services.jpg",
       title: "Personal Chef Services",
       description:
-        "Customized meal planning and preparation in the comfort of your own home, catered to your unique tastes, preferences, and dietary needs.",
+        "Customized meal planning and preparation in the comfort of your own home, catered to your unique tastes.",
     },
   ];
   return (
     <div className="container mx-auto my-16">
-      <h1 className="text-5xl text-center">Our Services</h1>
+      <h1 className="text-6xl text-center text-white">Our Services</h1>
       <div className="flex  flex-col md:flex-row  justify-between gap-y-4  items-center mt-6 md:gap-x-4 ">
         {servicesCard.map((card) => (
           <ServicesCard key={card.id} img={card} />

@@ -18,6 +18,7 @@ const Register = () => {
     } else {
       setError("Password is not match");
     }
+
   };
   return (
     <div className="md:w-1/3  px-4 my-10 md:my-16 md:px-0 mx-auto">
@@ -38,7 +39,7 @@ const Register = () => {
               onChange={(e) => setUserName(e.target.value)}
               required
               placeholder="Enter your name"
-              className="form-control w-full outline-none p-3 text-lg ring ring-purple-500 my-3 ring-offset-1 rounded-sm shadow"
+              className="my-input"
             />
           </div>
           <div>
@@ -52,7 +53,7 @@ const Register = () => {
               onChange={(e) => setImage(e.target.value)}
               required
               placeholder="Enter your image url"
-              className="form-control w-full outline-none p-3 text-lg ring ring-purple-500 my-3 ring-offset-1 rounded-sm shadow"
+              className="my-input"
             />
           </div>
           <div>
@@ -66,7 +67,7 @@ const Register = () => {
               onChange={(e) => setEmail(e.target.value)}
               required
               placeholder="Enter your email"
-              className="form-control w-full outline-none p-3 text-lg ring ring-purple-500 my-3 ring-offset-1 rounded-sm shadow"
+              className="my-input"
             />
           </div>
           <div>
@@ -82,7 +83,7 @@ const Register = () => {
               maxLength="12"
               required
               placeholder="Enter your password"
-              className="form-control w-full outline-none p-3 text-lg ring ring-purple-500 my-3 ring-offset-1 rounded-sm shadow"
+              className="my-input"
             />
           </div>
           <div>
@@ -98,7 +99,7 @@ const Register = () => {
               maxLength="12"
               required
               placeholder="Enter your conform password"
-              className="form-control w-full outline-none p-3 text-lg ring ring-purple-500 my-3 ring-offset-1 rounded-sm shadow"
+              className="my-input"
             />
           </div>
           <button type="submit" className="btn btn-active w-full">

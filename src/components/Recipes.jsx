@@ -41,10 +41,10 @@ const Recipes = () => {
         </div>
       </div>
       <div className="my-12">
-        <h1 className="text-center text-5xl">My Recipe</h1>
+        <h1 className="text-center text-white text-5xl">My Recipe</h1>
         <div className="flex flex-col md:flex-row gap-x-4 px-4 md:px-0 justify-around items-center">
           {recipes?.map((r) => (
-            <div className="my-4 md:my-10  bg-gray-50 rounded px-4 py-4">
+            <div className="my-4 md:my-10 card-hover bg-gray-50 rounded px-4 py-4">
               <div className="">
                 <div>
                   <h1 className=" my-2 text-center text-3xl">{r}</h1>

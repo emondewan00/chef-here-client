@@ -8,6 +8,7 @@ import ErrorPage from "../components/ErrorPage";
 import Recipes from "../components/Recipes";
 import ProviteRoute from "../components/proviteRoute/ProviteRoute";
 import Blogs from "../components/Blogs";
+import UserLogTrueOrFalse from "../components/AuthProvider/UserLogTrueOrFalse";
 
 const Routes = createBrowserRouter([
   {
@@ -21,11 +22,19 @@ const Routes = createBrowserRouter([
       },
       {
         path: "/login",
-        element: <LogWithEmailAndPass />,
+        element: (
+          <UserLogTrueOrFalse>
+            <LogWithEmailAndPass />
+          </UserLogTrueOrFalse>
+        ),
       },
       {
         path: "/register",
-        element: <Register />,
+        element: (
+          <UserLogTrueOrFalse>
+            <Register />
+          </UserLogTrueOrFalse>
+        ),
       },
       {
         path: "/recipes/:id",

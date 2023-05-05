@@ -1,17 +1,20 @@
 import React, { useContext, useState } from "react";
 import { FaUser, FaUserAlt } from "react-icons/fa";
 import { HiMenu } from "react-icons/hi";
-import { Link, NavLink } from "react-router-dom";
+import { Link, NavLink, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider/AuthProvider";
 const NavBar = () => {
   const { currentUser, logOut } = useContext(AuthContext);
   const [nav, setNav] = useState(false);
+  const navigate = useNavigate();
+  const [log, setLog] = useState(true);
   const singOut = () => {
     logOut();
+    navigate("/");
+    setLog(false);
   };
   const menuHandler = () => {
     setNav(!nav);
-    console.log("hallo");
   };
 
   const routes = [
@@ -36,7 +39,7 @@ const NavBar = () => {
     <div className=" bg-white shadow">
       <nav className="p-5 container mx-auto  md:flex md:items-center md:justify-between">
         <div className="flex justify-between items-center ">
-          <Link to="/" className="text-2xl font-[Poppins] cursor-pointer">
+          <Link to="/" className="text-2xl hover:text-4xl delay-200 transition-all duration-300 ease-in-out  cursor-pointer">
             Chef Here
           </Link>
 
@@ -53,9 +56,16 @@ const NavBar = () => {
           }`}
         >
           <li className="mx-4 my-6 md:my-0 order-last ">
-            <span >
-              {currentUser.photoURL ? (
-                <img src={currentUser.photoURL} width="40px" height="40px" title={currentUser.displayName} alt="user" className="rounded-full ring ring-cyan-600" />
+            <span>
+              {currentUser.photoURL && log ? (
+                <img
+                  src={currentUser.photoURL}
+                  width="40px"
+                  height="40px"
+                  title={currentUser.displayName}
+                  alt="user"
+                  className="rounded-full ring ring-cyan-600"
+                />
               ) : (
                 <FaUser />
               )}
@@ -76,7 +86,7 @@ const NavBar = () => {
               </NavLink>
             </li>
           ))}
-          {currentUser ? (
+          {currentUser && log? (
             <button
               onClick={singOut}
               className="bg-cyan-400 text-white font-[Poppins] duration-500 px-6 py-2 mx-4 hover:bg-cyan-500 rounded "

@@ -12,7 +12,7 @@ export default function ErrorPage() {
           alt=""
         />
         <p className="text-center">
-          <i className="text-4xl font-semibold ">
+          <i className="text-4xl text-white font-semibold ">
             {error.statusText || error.message}
           </i>
         </p>

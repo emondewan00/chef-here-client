@@ -20,18 +20,18 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState("");
   const [registerErr, setRegisterErr] = useState("");
-  const [loading, setLoading] = useState(true);
+  const [loading, setLoading] = useState(false);
 
   const googleProvider = new GoogleAuthProvider();
   const GithubProvider = new GithubAuthProvider();
 
   const loginWithGoogle = () => {
-    setLoading(true)
+    setLoading(true);
     return signInWithPopup(auth, googleProvider);
   };
 
   const githubLogin = () => {
-    setLoading(true)
+    setLoading(true);
     return signInWithPopup(auth, GithubProvider);
   };
   const updateUser = (user, name, photo) => {
@@ -51,12 +51,12 @@ const AuthProvider = ({ children }) => {
     sendEmailVerification(user);
   };
   const emailAndPass = (email, password, userName, userPhoto) => {
-    setLoading(true)
+    setLoading(true);
     return createUserWithEmailAndPassword(auth, email, password)
       .then((res) => {
         updateUser(res.user, userName, userPhoto);
         emailVerification(res.user);
-        setRegisterErr(""); //Account create success
+        setRegisterErr("Account create success"); //Account create success
       })
       .catch((error) => {
         setRegisterErr(error.message);
@@ -66,16 +66,17 @@ const AuthProvider = ({ children }) => {
     return sendPasswordResetEmail(auth, email);
   };
   const logInEmailAndPass = (email, password) => {
-    setLoading(true)
-    signInWithEmailAndPassword(email, password);
+    setLoading(true);
+    return signInWithEmailAndPassword(auth, email, password);
   };
   const logOut = () => {
-    setLoading(true)
+    // setLoading(true)
     return signOut(auth);
   };
   useEffect(() => {
     const unsubscrib = onAuthStateChanged(auth, (user) => {
       if (user) {
+        setLoading(true);
         setCurrentUser(user);
         setLoading(false);
       }
@@ -83,7 +84,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       unsubscrib();
     };
-  }, []);
+  }, [currentUser]);
   const authInfo = {
     loginWithGoogle,
     githubLogin,

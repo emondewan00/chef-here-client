@@ -20,7 +20,7 @@ const Footer = () => {
     },
   ];
   return (
-    <footer className=" bg-gray-800 text-gray-400 py-8">
+    <footer className=" bg-blue-600 text-white py-8">
       <div className=" container mx-auto flex justify-between px-4">
         <div className="text-sm my-auto">
           <p>&copy; 2023 Chef Here</p>
@@ -34,7 +34,7 @@ const Footer = () => {
                   to={r.path}
                   className={({ isActive }) =>
                     isActive
-                      ? "text-blue-600"
+                      ? "text-black"
                       : "text-xl hover:text-cyan-500 duration-500"
                   }
                 >

@@ -1,16 +1,16 @@
-import React, { useContext } from "react";
+import React, { useContext, useRef } from "react";
 import { FaGoogle } from "react-icons/fa";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { AuthContext } from "./AuthProvider/AuthProvider";
 
 const LogWithEmailAndPass = () => {
-  const { loginWithGoogle, logInEmailAndPass, githubLogin } =
+  const { loginWithGoogle, resetPass, logInEmailAndPass, githubLogin } =
     useContext(AuthContext);
   const location = useLocation();
   const navigate = useNavigate();
+  const emailRaf = useRef();
 
   const whatWillBeGo = location?.state?.from?.pathname || "/";
-  console.log(whatWillBeGo)
 
   const googleLog = () => {
     loginWithGoogle();
@@ -28,11 +28,16 @@ const LogWithEmailAndPass = () => {
       value[x.name] = x.value;
     }
     delete value[""];
-    console.log(value);
-    logInEmailAndPass(value.email, value.password);
+    const { email, password } = value || {};
+    logInEmailAndPass(email, password);
     navigate(whatWillBeGo);
   };
-
+  const forgotPass = () => {
+    const email = emailRaf.current.value;
+    if (/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(email)) {
+      resetPass(email);
+    }
+  };
   return (
     <div className="md:w-1/4  px-4 my-10 md:my-16 md:px-0 mx-auto">
       <div className="card border my-auto shadow-xl shadow-purple-200 bg-gray-100 p-10">
@@ -42,20 +47,20 @@ const LogWithEmailAndPass = () => {
         <hr />
         <div className="my-8 grid grid-cols-2 gap-2">
           <button
-            className="my-btn  ease-linear delay-300 duration-700 hover:shadow-xl  transition-all hover:shadow-pink-300  hover:bg-gray-800 hover:text-white shadow-lg "
+            className="my-btn  "
             onClick={googleLog}
           >
             <FaGoogle className="me-2" />
             Google{" "}
           </button>
           <button
-            className="my-btn  ease-linear delay-300 duration-700 hover:shadow-xl  transition-all hover:shadow-pink-300  hover:bg-gray-800 hover:text-white shadow-lg "
+            className="my-btn"
             onClick={githubLog}
           >
             Github{" "}
           </button>
         </div>
-        {/* onSubmit={handleSubmit(onSubmit)} */}
+
         <form className="" onSubmit={submitHandler}>
           <label htmlFor="email" className="text-xl  font-semibold">
             Email
@@ -64,9 +69,9 @@ const LogWithEmailAndPass = () => {
             type="email"
             name="email"
             id="email"
-            // {...register("email")}
+            ref={emailRaf}
             placeholder="Enter your email"
-            className="form-control  w-full outline-none p-3 text-lg ring ring-purple-500 my-3 ring-offset-1 rounded-sm shadow-xl shadow-purple-200"
+            className="my-input"
           />
           <label htmlFor="password" className="text-xl font-semibold ">
             Password
@@ -75,9 +80,8 @@ const LogWithEmailAndPass = () => {
             type="password"
             name="password"
             id="password"
-            // {...register("password")}
             placeholder="Enter your password"
-            className="form-control w-full outline-none p-3 text-lg ring ring-purple-500 my-3 ring-offset-1 rounded-sm shadow-xl shadow-purple-200"
+            className="my-input"
           />
           <button type="submit" className="btn btn-active w-full">
             Login
@@ -92,7 +96,7 @@ const LogWithEmailAndPass = () => {
             </Link>
             <br />
             <span
-              // onClick={forgotHandler}
+              onClick={forgotPass}
               className="cursor-pointer underline-offset-4 underline decoration-blue-500 decoration-2"
             >
               Forgot passwort
